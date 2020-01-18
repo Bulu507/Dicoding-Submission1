@@ -11,13 +11,12 @@ public class EnemyMove : MonoBehaviour
     #region Public Variables
 
     public Sprite[] sprites;
+    public int MoveDirection;
 
     #endregion //Public Variables
 
     #region Private Variables
 
-    [SerializeField]
-    private float moveDirection = 1;
     private float randomSpeed;
     private float randomScale;
     private float randomVelocityY;
@@ -38,12 +37,15 @@ public class EnemyMove : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = sprites[index];
         transform.localScale = new Vector3(randomScale, randomScale, 0);
         rb = GetComponent<Rigidbody2D>();
+
+        //no collision on same layer
+        Physics2D.IgnoreLayerCollision(8, 8);
     }
 
     // Update is called once per frame
     void Update()
     {
-        float move = (randomSpeed * Time.deltaTime * moveDirection) + transform.position.x;
+        float move = (randomSpeed * Time.deltaTime * MoveDirection) + transform.position.x;
         transform.position = new Vector3(move, transform.position.y);
     }
 

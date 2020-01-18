@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class PlayerControl : MonoBehaviour
@@ -11,6 +12,8 @@ public class PlayerControl : MonoBehaviour
     #endregion //Enums
 
     #region Public Variables
+
+    public static bool IsGameOver = false;
 
     #endregion //Public Variables
 
@@ -24,7 +27,7 @@ public class PlayerControl : MonoBehaviour
     private Vector3 localScale;
     private GameObject player;
     private string IsMove = "IsMove";
-
+    
     #endregion //Private Variables
 
     // (Unity Named Methods)
@@ -63,11 +66,7 @@ public class PlayerControl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.CompareTag("Enemy"))
-        //{
-        //    //Destroy(collision.gameObject);
-        //    SceneManager.LoadScene("GameOver"); // Baris Ini akan digunakan pada submodul GameOver
-        //}
+        IsGameOver = true;
     }
 
     #endregion //Main Methods
